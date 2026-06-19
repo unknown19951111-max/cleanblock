@@ -69,16 +69,30 @@ Object.entries(icons).forEach(([size, iconPath]) => {
 });
 
 check('service_worker path set', !!(manifest.background && manifest.background.service_worker));
+check('service_worker type is module', manifest.background && manifest.background.type === 'module');
 
 const swPath = path.join(ROOT, manifest.background.service_worker);
 check('service_worker file exists', fs.existsSync(swPath));
 
-try {
-  execSync('node --check ' + JSON.stringify(swPath), { stdio: 'pipe' });
-  check('service-worker.js syntax valid', true);
-} catch (e) {
-  check('service-worker.js syntax valid', false, e.stderr.toString().trim());
+const bgDir = path.join(ROOT, 'src', 'background');
+const bgFiles = fs.readdirSync(bgDir).filter((f) => f.endsWith('.js'));
+
+function checkModuleSyntax(filePath, label) {
+  const tmpPath = filePath + '.syntax-check.mjs';
+  fs.copyFileSync(filePath, tmpPath);
+  try {
+    execSync('node --check ' + JSON.stringify(tmpPath), { stdio: 'pipe' });
+    check(label + ' syntax valid', true);
+  } catch (e) {
+    check(label + ' syntax valid', false, e.stderr ? e.stderr.toString().trim() : e.message);
+  } finally {
+    try { fs.unlinkSync(tmpPath); } catch (_) {}
+  }
 }
+
+bgFiles.forEach((file) => {
+  checkModuleSyntax(path.join(bgDir, file), 'src/background/' + file);
+});
 
 const popupJsPath = path.join(ROOT, 'src', 'popup.js');
 try {

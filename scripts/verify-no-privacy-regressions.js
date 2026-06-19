@@ -41,14 +41,17 @@ function grepFileExcluding(filePath, pattern, excludePattern) {
 
 console.log('--- verify-no-privacy-regressions ---');
 
-const swPath = path.join(ROOT, 'src/background/service-worker.js');
 const popupJsPath = path.join(ROOT, 'src/popup.js');
 const popupHtmlPath = path.join(ROOT, 'src/popup.html');
+const bgDir = path.join(ROOT, 'src/background');
 
-const sourceFiles = [
-  { path: swPath, label: 'service-worker.js' },
+const bgFiles = fs.readdirSync(bgDir)
+  .filter((f) => f.endsWith('.js'))
+  .map((f) => ({ path: path.join(bgDir, f), label: f }));
+
+const sourceFiles = bgFiles.concat([
   { path: popupJsPath, label: 'popup.js' }
-];
+]);
 
 sourceFiles.forEach(({ path: fp, label }) => {
   const fetchMatches = grepFileExcluding(fp, /\bfetch\b/, /\/\//);
@@ -66,15 +69,17 @@ sourceFiles.forEach(({ path: fp, label }) => {
     remoteUrlMatches.map((m) => 'line ' + m.line + ': ' + m.text).join('; '));
 });
 
-const evalMatches = grepFileExcluding(swPath, /\beval\s*\(|new\s+Function\s*\(|\bimportScripts\s*\(/, /REJECTED_EXECUTABLE_FIELDS|'eval'|'function'/);
-check('service-worker.js: no eval/new Function/importScripts (excluding rejected-field strings)',
-  evalMatches.length === 0,
-  evalMatches.map((m) => 'line ' + m.line + ': ' + m.text).join('; '));
+bgFiles.forEach(({ path: fp, label }) => {
+  const evalMatches = grepFileExcluding(fp, /\beval\s*\(|new\s+Function\s*\(|\bimportScripts\s*\(/, /REJECTED_EXECUTABLE_FIELDS|'eval'|'function'/);
+  check(label + ': no eval/new Function/importScripts (excluding rejected-field strings)',
+    evalMatches.length === 0,
+    evalMatches.map((m) => 'line ' + m.line + ': ' + m.text).join('; '));
 
-const devHandlerMatches = grepFile(swPath, /message\.type\s*===\s*'DEV_/);
-check('service-worker.js: no DEV_ runtime message handlers',
-  devHandlerMatches.length === 0,
-  devHandlerMatches.map((m) => 'line ' + m.line + ': ' + m.text).join('; '));
+  const devHandlerMatches = grepFile(fp, /message\.type\s*===\s*'DEV_/);
+  check(label + ': no DEV_ runtime message handlers',
+    devHandlerMatches.length === 0,
+    devHandlerMatches.map((m) => 'line ' + m.line + ': ' + m.text).join('; '));
+});
 
 const forbiddenApis = [
   'chrome\\.tabs', 'chrome\\.cookies', 'chrome\\.history',

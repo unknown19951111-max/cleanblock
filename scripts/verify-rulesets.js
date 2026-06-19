@@ -68,15 +68,15 @@ STATIC_FILES.forEach(({ file, idRange }) => {
   });
 });
 
-const swSource = fs.readFileSync(path.join(ROOT, 'src/background/service-worker.js'), 'utf8');
+const constantsSource = fs.readFileSync(path.join(ROOT, 'src/background/constants.js'), 'utf8');
 
-const allowlistStart = swSource.match(/ALLOWLIST_RULE_ID_START\s*=\s*(\d+)/);
-const allowlistMax = swSource.match(/ALLOWLIST_RULE_ID_MAX\s*=\s*(\d+)/);
+const allowlistStart = constantsSource.match(/ALLOWLIST_RULE_ID_START\s*=\s*(\d+)/);
+const allowlistMax = constantsSource.match(/ALLOWLIST_RULE_ID_MAX\s*=\s*(\d+)/);
 check('allowlist ID range starts at 50000', allowlistStart && allowlistStart[1] === '50000');
 check('allowlist ID range ends at 59999', allowlistMax && allowlistMax[1] === '59999');
 
-const remoteStart = swSource.match(/REMOTE_DYNAMIC_RULE_ID_START\s*=\s*(\d+)/);
-const remoteMax = swSource.match(/REMOTE_DYNAMIC_RULE_ID_MAX\s*=\s*(\d+)/);
+const remoteStart = constantsSource.match(/REMOTE_DYNAMIC_RULE_ID_START\s*=\s*(\d+)/);
+const remoteMax = constantsSource.match(/REMOTE_DYNAMIC_RULE_ID_MAX\s*=\s*(\d+)/);
 check('remote dynamic ID range starts at 60000', remoteStart && remoteStart[1] === '60000');
 check('remote dynamic ID range ends at 89999', remoteMax && remoteMax[1] === '89999');
 

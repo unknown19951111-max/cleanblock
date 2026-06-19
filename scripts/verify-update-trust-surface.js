@@ -80,7 +80,11 @@ if (exampleManifest) {
   }
 }
 
-const swSource = fs.readFileSync(path.join(ROOT, 'src/background/service-worker.js'), 'utf8');
+const bgDir = path.join(ROOT, 'src/background');
+const bgSource = fs.readdirSync(bgDir)
+  .filter((f) => f.endsWith('.js'))
+  .map((f) => fs.readFileSync(path.join(bgDir, f), 'utf8'))
+  .join('\n');
 
 const trustFunctions = [
   'validateUpdateManifestShape',
@@ -109,7 +113,7 @@ const trustFunctions = [
 ];
 
 trustFunctions.forEach((fn) => {
-  check('function ' + fn + '() exists', swSource.includes('function ' + fn + '('));
+  check('function ' + fn + '() exists', bgSource.includes('function ' + fn + '('));
 });
 
 const popupJs = fs.readFileSync(path.join(ROOT, 'src/popup.js'), 'utf8');
