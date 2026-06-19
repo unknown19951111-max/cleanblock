@@ -36,43 +36,36 @@ header h1 {
   border-radius: 10px;
 }
 
-.stats-card {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 24px;
+.trust-summary-card {
   background: #fff;
   border: 1px solid #e5e7eb;
   border-radius: 10px;
-  padding: 20px 16px;
+  padding: 14px 16px;
   margin-bottom: 12px;
 }
 
-.stat {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
+.trust-summary-table {
+  width: 100%;
+  border-collapse: collapse;
 }
 
-.stat-value {
-  font-size: 28px;
-  font-weight: 700;
-  color: #1a1a2e;
-  line-height: 1;
+.trust-summary-table tr + tr {
+  border-top: 1px solid #f3f4f6;
 }
 
-.stat-label {
-  font-size: 11px;
+.trust-summary-key {
+  font-size: 12px;
   color: #6b7280;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  padding: 5px 0;
+  white-space: nowrap;
 }
 
-.stat-divider {
-  width: 1px;
-  height: 40px;
-  background: #e5e7eb;
+.trust-summary-val {
+  font-size: 12px;
+  color: #1a1a2e;
+  font-weight: 500;
+  padding: 5px 0;
+  text-align: right;
 }
 
 .rulesets-card {

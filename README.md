@@ -53,7 +53,20 @@ CleanBlock does not request host permissions. It uses Manifest V3 `declarativeNe
 
 ### Popup Trust Surface
 
-The extension popup displays a read-only Update Trust State card showing:
+The extension popup displays a trust summary and read-only Update Trust State card.
+
+**Trust summary:**
+
+- Protection status (active/inactive)
+- Static rulesets enabled count
+- Per-request stats: not collected
+- Telemetry: none
+- Updates: local validation scaffold
+- Allowlist: manual only
+
+CleanBlock intentionally does not show per-request blocked counts. Under Manifest V3, accurate DNR match counting requires `declarativeNetRequestFeedback` or tab-scoped observability permissions. CleanBlock avoids those permissions to preserve its minimal-permission boundary.
+
+**Update Trust State card:**
 
 - Current ruleset version and source
 - Last successful update timestamp

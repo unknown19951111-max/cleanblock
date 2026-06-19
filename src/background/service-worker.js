@@ -7,18 +7,8 @@ const STATIC_RULESETS = ['core_ads', 'privacy_trackers', 'annoyances'];
 
 // --- Stats Engine ---
 
-function getTodayKey() {
-  const d = new Date();
-  return d.getFullYear() + '-' +
-    String(d.getMonth() + 1).padStart(2, '0') + '-' +
-    String(d.getDate()).padStart(2, '0');
-}
-
 function createDefaultStats() {
   return {
-    blocked_today: 0,
-    blocked_total: 0,
-    last_reset_date: getTodayKey(),
     ruleset_version: 1,
     ruleset_source: 'static',
     last_update_check: null,
@@ -37,24 +27,6 @@ async function saveStats(stats) {
   await chrome.storage.local.set({ stats });
 }
 
-async function resetDailyStatsIfNeeded() {
-  const stats = await getStats();
-  const today = getTodayKey();
-  if (stats.last_reset_date !== today) {
-    stats.blocked_today = 0;
-    stats.last_reset_date = today;
-    await saveStats(stats);
-  }
-  return stats;
-}
-
-async function incrementBlockedCount(count = 1) {
-  const stats = await resetDailyStatsIfNeeded();
-  stats.blocked_today += count;
-  stats.blocked_total += count;
-  await saveStats(stats);
-  return stats;
-}
 
 // --- SHA-256 Hash Verification (local only — no fetch, no transmission) ---
 
@@ -908,7 +880,7 @@ chrome.alarms.onAlarm.addListener((alarm) => {
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.type === 'GET_HEALTH') {
     (async () => {
-      const stats = await resetDailyStatsIfNeeded();
+      const stats = await getStats();
       const data = await chrome.storage.local.get(['extension_version', 'ruleset_health']);
       const updateState = await getUpdateState();
       const lkg = await getLastKnownGoodRuleset();
@@ -942,15 +914,6 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.type === 'REMOVE_ALLOWLIST_DOMAIN') {
     removeAllowlistDomain(message.domain).then((result) => {
       sendResponse(result);
-    });
-    return true;
-  }
-
-  // DEV ONLY — smoke-test counter without real request data.
-  // Not telemetry. Remove or gate behind a build flag before store submission.
-  if (message.type === 'DEV_INCREMENT_BLOCKED') {
-    incrementBlockedCount(1).then((stats) => {
-      sendResponse({ stats });
     });
     return true;
   }

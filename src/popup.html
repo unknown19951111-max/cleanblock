@@ -12,16 +12,33 @@
     <span id="version" class="version-badge">v—</span>
   </header>
 
-  <section class="stats-card">
-    <div class="stat">
-      <span class="stat-value" id="blocked-today">0</span>
-      <span class="stat-label">Blocked today</span>
-    </div>
-    <div class="stat-divider"></div>
-    <div class="stat">
-      <span class="stat-value" id="blocked-total">0</span>
-      <span class="stat-label">Blocked total</span>
-    </div>
+  <section class="trust-summary-card">
+    <table class="trust-summary-table">
+      <tr>
+        <td class="trust-summary-key">Protection</td>
+        <td class="trust-summary-val" id="protection-status">Active</td>
+      </tr>
+      <tr>
+        <td class="trust-summary-key">Static rulesets</td>
+        <td class="trust-summary-val" id="rulesets-enabled">3 enabled</td>
+      </tr>
+      <tr>
+        <td class="trust-summary-key">Per-request stats</td>
+        <td class="trust-summary-val">Not collected</td>
+      </tr>
+      <tr>
+        <td class="trust-summary-key">Telemetry</td>
+        <td class="trust-summary-val">None</td>
+      </tr>
+      <tr>
+        <td class="trust-summary-key">Updates</td>
+        <td class="trust-summary-val">Local validation scaffold</td>
+      </tr>
+      <tr>
+        <td class="trust-summary-key">Allowlist</td>
+        <td class="trust-summary-val">Manual only</td>
+      </tr>
+    </table>
   </section>
 
   <section class="rulesets-card">

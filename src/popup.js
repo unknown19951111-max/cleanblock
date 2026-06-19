@@ -9,17 +9,16 @@ const RULESET_LABELS = {
 function render(health) {
   document.getElementById('version').textContent = 'v' + health.extension_version;
 
-  const stats = health.stats;
-  document.getElementById('blocked-today').textContent = stats.blocked_today.toLocaleString();
-  document.getElementById('blocked-total').textContent = stats.blocked_total.toLocaleString();
+  const rulesetHealth = health.ruleset_health || {};
+  const enabledCount = Object.values(rulesetHealth).filter((r) => r && r.enabled).length;
+  document.getElementById('rulesets-enabled').textContent = enabledCount + ' enabled';
 
   document.getElementById('ruleset-source').textContent =
-    'Source: ' + stats.ruleset_source;
+    'Source: ' + (health.stats ? health.stats.ruleset_source : 'static');
 
   const items = document.querySelectorAll('#ruleset-list li');
   items.forEach((li) => {
     const id = li.dataset.ruleset;
-    const rulesetHealth = health.ruleset_health || {};
     const info = rulesetHealth[id];
     const dot = li.querySelector('.ruleset-dot');
     const status = li.querySelector('.ruleset-status');
@@ -33,8 +32,9 @@ function render(health) {
     }
   });
 
+  const stats = health.stats;
   const rollbackCard = document.getElementById('rollback-card');
-  if (stats.rollback_active) {
+  if (stats && stats.rollback_active) {
     rollbackCard.hidden = false;
     document.getElementById('rollback-text').textContent =
       'Rollback active' + (stats.rollback_reason ? ': ' + stats.rollback_reason : '');
