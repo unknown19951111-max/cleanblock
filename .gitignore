@@ -9,3 +9,22 @@ coverage/
 tmp/
 .temp/
 .cache/
+
+# Extension packaging artifacts
+*.crx
+*.zip
+
+# Key material — never commit signing keys
+*.pem
+*.key
+*.p8
+*.p12
+*.crt
+*.cer
+key.json
+private-key*
+private_key*
+signing-key*
+signing_key*
+.chrome-extension-id
+chrome-extension-id

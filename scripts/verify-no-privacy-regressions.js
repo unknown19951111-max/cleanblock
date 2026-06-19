@@ -103,6 +103,66 @@ privacySensitive.forEach((p) => {
   check('manifest: no "' + p + '" permission', !manifestPerms.includes(p));
 });
 
+// --- Key material and packaging artifact scan ---
+
+function walkDir(dir, exclude) {
+  let results = [];
+  const entries = fs.readdirSync(dir, { withFileTypes: true });
+  for (const entry of entries) {
+    if (exclude.includes(entry.name)) continue;
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      results = results.concat(walkDir(full, exclude));
+    } else {
+      results.push(full);
+    }
+  }
+  return results;
+}
+
+const allFiles = walkDir(ROOT, ['.git', 'node_modules']);
+const keyExtensions = ['.pem', '.key', '.p8', '.p12', '.crt', '.cer', '.crx'];
+const keyFilenames = ['key.json'];
+const keyPrefixes = ['private-key', 'private_key', 'signing-key', 'signing_key'];
+
+const keyMaterialFiles = allFiles.filter((f) => {
+  const base = path.basename(f);
+  const ext = path.extname(f).toLowerCase();
+  if (keyExtensions.includes(ext)) return true;
+  if (keyFilenames.includes(base)) return true;
+  if (keyPrefixes.some((p) => base.startsWith(p))) return true;
+  return false;
+});
+
+check('no key material or .crx files in repo',
+  keyMaterialFiles.length === 0,
+  keyMaterialFiles.map((f) => path.relative(ROOT, f)).join(', '));
+
+const privateKeyHeaders = [
+  'BEGIN' + ' PRIVATE KEY',
+  'BEGIN' + ' RSA PRIVATE KEY',
+  'BEGIN' + ' EC PRIVATE KEY',
+  'BEGIN' + ' OPENSSH PRIVATE KEY'
+];
+
+const textExtensions = ['.js', '.json', '.md', '.txt', '.html', '.css', '.yaml', '.yml', '.toml'];
+const textFiles = allFiles.filter((f) => textExtensions.includes(path.extname(f).toLowerCase()));
+const filesWithKeys = [];
+
+textFiles.forEach((f) => {
+  const content = fs.readFileSync(f, 'utf8');
+  for (const header of privateKeyHeaders) {
+    if (content.includes(header)) {
+      filesWithKeys.push(path.relative(ROOT, f) + ' contains "' + header + '"');
+      break;
+    }
+  }
+});
+
+check('no private key headers in source files',
+  filesWithKeys.length === 0,
+  filesWithKeys.join('; '));
+
 console.log('');
 if (failures > 0) {
   console.log('RESULT: ' + failures + ' failure(s)');
