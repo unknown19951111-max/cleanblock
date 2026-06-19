@@ -17,6 +17,17 @@ function check(label, ok, detail) {
 
 console.log('--- verify-update-trust-surface ---');
 
+const trustDocs = [
+  'trust/TELEMETRY.md',
+  'trust/ALLOWLIST.md',
+  'trust/PERMISSIONS.md',
+  'trust/SECURITY.md',
+  'trust/BUILD_PROVENANCE.md'
+];
+trustDocs.forEach((doc) => {
+  check(doc + ' exists', fs.existsSync(path.join(ROOT, doc)));
+});
+
 check('docs/REMOTE_RULES.md exists',
   fs.existsSync(path.join(ROOT, 'docs/REMOTE_RULES.md')));
 

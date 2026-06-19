@@ -74,6 +74,16 @@ CleanBlock intentionally does not show per-request blocked counts. Under Manifes
 - Rollback status
 - Last-known-good ruleset version
 
+## Trust Documentation
+
+| Document | Contents |
+|----------|----------|
+| [trust/TELEMETRY.md](trust/TELEMETRY.md) | No telemetry leaves the device |
+| [trust/ALLOWLIST.md](trust/ALLOWLIST.md) | Manual allowlist behavior, no business exceptions |
+| [trust/PERMISSIONS.md](trust/PERMISSIONS.md) | Exact permissions and why each is excluded |
+| [trust/SECURITY.md](trust/SECURITY.md) | Signed update validation, runtime message surface, key management |
+| [trust/BUILD_PROVENANCE.md](trust/BUILD_PROVENANCE.md) | No build step — raw source ships directly |
+
 ## Trust Law
 
 > Remote updates may choose behavior. Remote updates may not define new executable behavior.
