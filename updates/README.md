@@ -8,6 +8,14 @@ This directory contains the update manifest format and examples for CleanBlock's
 
 This means a signed update can add, remove, or modify DNR block/allow rules — it cannot introduce JavaScript, content scripts, scriptlets, eval-like patterns, or any executable code.
 
+## Example Manifest
+
+`update-manifest.example.json` is a shape example, not a runnable signed fixture.
+
+- The SHA-256 values are placeholders using the well-known empty-string hash (`e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855`). They do not match any real rule file contents.
+- `PLACEHOLDER_BASE64_SIGNATURE` is not a valid Ed25519 signature. It exists only to demonstrate the field format.
+- Real update manifests must contain SHA-256 hashes matching exact rule-file contents and an Ed25519 signature produced by the offline private key.
+
 ## Manifest Format
 
 See `update-manifest.example.json` for the canonical shape.
