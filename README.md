@@ -27,7 +27,9 @@ A Manifest V3 privacy-preserving content blocker for Chrome, built as a portfoli
 storage, declarativeNetRequest, alarms
 ```
 
-No `tabs`, `activeTab`, `scripting`, `webRequest`, `cookies`, `management`, `offscreen`, or `declarativeNetRequestFeedback`.
+No `host_permissions`. No `tabs`, `activeTab`, `scripting`, `webRequest`, `cookies`, `management`, `offscreen`, or `declarativeNetRequestFeedback`.
+
+CleanBlock does not request host permissions. It uses Manifest V3 `declarativeNetRequest` rules to block content without asking to read or modify page contents across all websites.
 
 ### Rule ID Ranges
 

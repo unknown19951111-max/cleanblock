@@ -53,24 +53,21 @@ These are explicitly excluded. Each exclusion is an architectural decision, not 
     "storage",
     "declarativeNetRequest",
     "alarms"
-  ],
-  "host_permissions": [
-    "http://*/*",
-    "https://*/*"
   ]
 }
 ```
+
+No `host_permissions`. MV3 `declarativeNetRequest` with static and dynamic rulesets does not require host access for `block`, `allow`, or `upgradeScheme` actions.
 
 **Permission justification:**
 
 | Permission | Feature | Why required |
 |------------|---------|-------------|
-| `storage` | Settings, local counters, user allowlist, last-known-good state | Core data persistence |
+| `storage` | Settings, user allowlist, last-known-good state | Core data persistence |
 | `declarativeNetRequest` | Network-level ad/tracker blocking | Core blocking engine |
 | `alarms` | Scheduled filter update checks | Automatic signed-update polling |
-| `http://*/*` + `https://*/*` | Cross-site blocking coverage | Ads/trackers appear on arbitrary domains |
 
-**Explicitly not requested:** `cookies`, `tabs`, `scripting`, `webNavigation`, `webRequest`, `management`, `offscreen`, `unlimitedStorage`, `declarativeNetRequestFeedback`, `declarativeNetRequestWithHostAccess`.
+**Explicitly not requested:** `host_permissions`, `cookies`, `tabs`, `scripting`, `webNavigation`, `webRequest`, `management`, `offscreen`, `unlimitedStorage`, `declarativeNetRequestFeedback`, `declarativeNetRequestWithHostAccess`.
 
 ### v0.2 — Add cosmetic filtering
 
@@ -81,15 +78,11 @@ These are explicitly excluded. Each exclusion is an architectural decision, not 
     "declarativeNetRequest",
     "alarms",
     "scripting"
-  ],
-  "host_permissions": [
-    "http://*/*",
-    "https://*/*"
   ]
 }
 ```
 
-`scripting` added for `chrome.scripting.insertCSS()` cosmetic element hiding. No content script execution — CSS injection only.
+`scripting` added for `chrome.scripting.insertCSS()` cosmetic element hiding. No content script execution — CSS injection only. `host_permissions` may be required for CSS injection targeting specific sites — evaluate at v0.2 scope and document the tradeoff explicitly if added.
 
 ---
 

@@ -13,10 +13,6 @@
     "declarativeNetRequest",
     "alarms"
   ],
-  "host_permissions": [
-    "http://*/*",
-    "https://*/*"
-  ],
   "background": {
     "service_worker": "src/background/service-worker.js"
   },

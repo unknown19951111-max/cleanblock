@@ -47,6 +47,9 @@ FORBIDDEN_PERMISSIONS.forEach((p) => {
   check('no "' + p + '" permission', !perms.includes(p));
 });
 
+check('no host_permissions',
+  !manifest.host_permissions || (Array.isArray(manifest.host_permissions) && manifest.host_permissions.length === 0));
+
 check('no content_scripts', !manifest.content_scripts);
 check('no externally_connectable', !manifest.externally_connectable);
 
