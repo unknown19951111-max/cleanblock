@@ -71,6 +71,11 @@ check('service-worker.js: no eval/new Function/importScripts (excluding rejected
   evalMatches.length === 0,
   evalMatches.map((m) => 'line ' + m.line + ': ' + m.text).join('; '));
 
+const devHandlerMatches = grepFile(swPath, /message\.type\s*===\s*'DEV_/);
+check('service-worker.js: no DEV_ runtime message handlers',
+  devHandlerMatches.length === 0,
+  devHandlerMatches.map((m) => 'line ' + m.line + ': ' + m.text).join('; '));
+
 const forbiddenApis = [
   'chrome\\.tabs', 'chrome\\.cookies', 'chrome\\.history',
   'chrome\\.webRequest', 'chrome\\.management', 'chrome\\.scripting',
