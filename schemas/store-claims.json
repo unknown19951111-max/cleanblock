@@ -1,0 +1,41 @@
+{
+  "schema_version": "0.1",
+  "description": "Maps public trust claims to verification artifacts and checks",
+  "claims": [
+    {
+      "claim": "No telemetry leaves the device",
+      "artifact": "trust/TELEMETRY.md",
+      "verification": "npm run verify:privacy"
+    },
+    {
+      "claim": "No company-controlled allowlist exceptions",
+      "artifact": "trust/ALLOWLIST.md",
+      "verification": "schemas/allowlist.json has empty business_exceptions"
+    },
+    {
+      "claim": "Minimal permissions: storage, declarativeNetRequest, alarms only",
+      "artifact": "trust/PERMISSIONS.md",
+      "verification": "npm run verify:manifest"
+    },
+    {
+      "claim": "No host_permissions",
+      "artifact": "manifest.json",
+      "verification": "npm run verify:manifest"
+    },
+    {
+      "claim": "Signed update validation with Ed25519 and SHA-256",
+      "artifact": "trust/SECURITY.md",
+      "verification": "npm run verify:trust"
+    },
+    {
+      "claim": "No remote executable behavior",
+      "artifact": "trust/SECURITY.md",
+      "verification": "npm run verify:privacy"
+    },
+    {
+      "claim": "No build step — raw source ships directly",
+      "artifact": "trust/BUILD_PROVENANCE.md",
+      "verification": "No dist/ or build/ directory exists"
+    }
+  ]
+}

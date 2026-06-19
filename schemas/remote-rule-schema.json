@@ -1,0 +1,35 @@
+{
+  "schema_version": "0.1",
+  "description": "CleanBlock remote DNR dynamic rule constraints",
+  "rule_id_range": {
+    "min": 60000,
+    "max": 89999
+  },
+  "allowed_actions": ["block", "allow", "upgradeScheme"],
+  "forbidden_actions": ["redirect", "modifyHeaders", "allowAllRequests"],
+  "allowed_condition_fields": [
+    "urlFilter",
+    "regexFilter",
+    "resourceTypes",
+    "excludedResourceTypes",
+    "initiatorDomains",
+    "excludedInitiatorDomains",
+    "requestDomains",
+    "excludedRequestDomains",
+    "domainType",
+    "isUrlFilterCaseSensitive"
+  ],
+  "rejected_executable_fields": [
+    "eval",
+    "function",
+    "Function",
+    "setTimeout",
+    "setInterval",
+    "javascript:",
+    "data:text/html",
+    "data:application/javascript",
+    "importScripts"
+  ],
+  "main_frame_blocking": false,
+  "rule_type": "dnr_dynamic_ruleset_update"
+}

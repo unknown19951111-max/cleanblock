@@ -28,6 +28,26 @@ trustDocs.forEach((doc) => {
   check(doc + ' exists', fs.existsSync(path.join(ROOT, doc)));
 });
 
+const schemaFiles = [
+  'schemas/telemetry-schema.json',
+  'schemas/allowlist.json',
+  'schemas/permission-map.json',
+  'schemas/remote-rule-schema.json',
+  'schemas/store-claims.json'
+];
+schemaFiles.forEach((sf) => {
+  const sfPath = path.join(ROOT, sf);
+  check(sf + ' exists', fs.existsSync(sfPath));
+  if (fs.existsSync(sfPath)) {
+    try {
+      JSON.parse(fs.readFileSync(sfPath, 'utf8'));
+      check(sf + ' is valid JSON', true);
+    } catch (e) {
+      check(sf + ' is valid JSON', false, e.message);
+    }
+  }
+});
+
 check('docs/REMOTE_RULES.md exists',
   fs.existsSync(path.join(ROOT, 'docs/REMOTE_RULES.md')));
 

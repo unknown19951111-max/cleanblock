@@ -1,0 +1,9 @@
+{
+  "schema_version": "0.1",
+  "description": "CleanBlock telemetry schema — documents that no outbound telemetry payload exists",
+  "outbound_payloads": [],
+  "outbound_endpoints": [],
+  "analytics_sdks": [],
+  "crash_reporters": [],
+  "policy": "No telemetry, analytics, crash reports, or usage data leaves the device"
+}

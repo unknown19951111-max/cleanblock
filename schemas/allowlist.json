@@ -1,0 +1,15 @@
+{
+  "schema_version": "0.1",
+  "description": "CleanBlock allowlist schema — local manual user domain exceptions",
+  "allowlist_type": "user_manual",
+  "storage_location": "chrome.storage.local",
+  "entry_format": {
+    "domain": "string — valid hostname, no protocol, no path",
+    "rule_id": "integer — allocated from range 50000–59999",
+    "added_at": "ISO 8601 timestamp"
+  },
+  "business_exceptions": [],
+  "affiliate_exceptions": [],
+  "revenue_linked_exceptions": [],
+  "policy": "Only user-entered domains. No company-controlled, revenue-linked, or affiliate exceptions"
+}

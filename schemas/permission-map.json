@@ -1,0 +1,34 @@
+{
+  "schema_version": "0.1",
+  "description": "CleanBlock permission-to-feature mapping",
+  "granted_permissions": {
+    "storage": {
+      "feature": "Settings, user allowlist, last-known-good state, update metadata",
+      "code_path": "src/background/service-worker.js"
+    },
+    "declarativeNetRequest": {
+      "feature": "Network-level ad/tracker blocking via static and dynamic rulesets",
+      "code_path": "src/background/service-worker.js"
+    },
+    "alarms": {
+      "feature": "Scheduled filter update checks",
+      "code_path": "src/background/service-worker.js"
+    }
+  },
+  "host_permissions": [],
+  "forbidden_permissions": [
+    "cookies",
+    "tabs",
+    "activeTab",
+    "scripting",
+    "webRequest",
+    "management",
+    "offscreen",
+    "declarativeNetRequestFeedback",
+    "declarativeNetRequestWithHostAccess",
+    "history",
+    "bookmarks",
+    "topSites",
+    "geolocation"
+  ]
+}
