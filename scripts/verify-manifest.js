@@ -63,6 +63,11 @@ if (ruleResources) {
   });
 }
 
+const icons = manifest.icons || {};
+Object.entries(icons).forEach(([size, iconPath]) => {
+  check('icon file exists: ' + iconPath, fs.existsSync(path.join(ROOT, iconPath)));
+});
+
 check('service_worker path set', !!(manifest.background && manifest.background.service_worker));
 
 const swPath = path.join(ROOT, manifest.background.service_worker);
