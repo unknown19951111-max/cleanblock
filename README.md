@@ -84,6 +84,7 @@ The background service worker is split into native MV3 ES modules with no bundle
 | `update-state.js` | Update state, last-known-good, rollback management |
 | `allowlist.js` | Domain parsing, allowlist CRUD, DNR sync |
 | `storage-init.js` | Storage initialization |
+| `validation-helpers.js` | Shared validation utilities (no circular imports) |
 
 ### Permissions
 
@@ -176,6 +177,7 @@ cleanblock/
       update-state.js
       allowlist.js
       storage-init.js
+      validation-helpers.js
     popup.html
     popup.css
     popup.js

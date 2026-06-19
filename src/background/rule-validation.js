@@ -6,16 +6,9 @@ import {
   REJECTED_REMOTE_CONDITION_FIELDS
 } from './constants.js';
 import { validateRulesetFileDescriptor } from './manifest-validation.js';
+import { validateObjectOnlyHasAllowedFields } from './validation-helpers.js';
 
-export function validateObjectOnlyHasAllowedFields(obj, allowedFields, path) {
-  const errors = [];
-  for (const key of Object.keys(obj)) {
-    if (!allowedFields.includes(key)) {
-      errors.push(path + ': unexpected field "' + key + '"');
-    }
-  }
-  return errors;
-}
+export { validateObjectOnlyHasAllowedFields };
 
 export function containsRejectedExecutableField(value, path) {
   const errors = [];

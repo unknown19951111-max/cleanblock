@@ -108,6 +108,16 @@ privacySensitive.forEach((p) => {
   check('manifest: no "' + p + '" permission', !manifestPerms.includes(p));
 });
 
+// --- Module boundary check ---
+
+const manifestValSource = fs.readFileSync(path.join(ROOT, 'src/background/manifest-validation.js'), 'utf8');
+check('manifest-validation.js does not import rule-validation.js',
+  !manifestValSource.includes("from './rule-validation.js'"));
+
+const swSource = fs.readFileSync(path.join(ROOT, 'src/background/service-worker.js'), 'utf8');
+check('service-worker.js contains no validation logic',
+  !swSource.includes('function validate'));
+
 // --- Key material and packaging artifact scan ---
 
 function walkDir(dir, exclude) {

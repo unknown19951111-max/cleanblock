@@ -3,7 +3,7 @@ import {
   ALLOWED_UPDATE_MANIFEST_FIELDS, ALLOWED_UPDATE_FILE_DESCRIPTOR_FIELDS,
   ALLOWED_SIGNATURE_FIELDS
 } from './constants.js';
-import { validateObjectOnlyHasAllowedFields } from './rule-validation.js';
+import { validateObjectOnlyHasAllowedFields } from './validation-helpers.js';
 
 export function isAllowedRuleType(ruleType) {
   return ALLOWED_RULE_TYPES.includes(ruleType);
