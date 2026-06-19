@@ -1,0 +1,12 @@
+{
+  "name": "cleanblock",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "verify": "node scripts/verify-manifest.js && node scripts/verify-rulesets.js && node scripts/verify-no-privacy-regressions.js && node scripts/verify-update-trust-surface.js",
+    "verify:manifest": "node scripts/verify-manifest.js",
+    "verify:rulesets": "node scripts/verify-rulesets.js",
+    "verify:privacy": "node scripts/verify-no-privacy-regressions.js",
+    "verify:trust": "node scripts/verify-update-trust-surface.js"
+  }
+}

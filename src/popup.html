@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=380">
+  <link rel="stylesheet" href="popup.css">
+  <title>CleanBlock</title>
+</head>
+<body>
+  <header>
+    <h1>CleanBlock</h1>
+    <span id="version" class="version-badge">v—</span>
+  </header>
+
+  <section class="stats-card">
+    <div class="stat">
+      <span class="stat-value" id="blocked-today">0</span>
+      <span class="stat-label">Blocked today</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat">
+      <span class="stat-value" id="blocked-total">0</span>
+      <span class="stat-label">Blocked total</span>
+    </div>
+  </section>
+
+  <section class="rulesets-card">
+    <h2>Rulesets</h2>
+    <ul id="ruleset-list" class="ruleset-list">
+      <li data-ruleset="core_ads">
+        <span class="ruleset-dot"></span>
+        <span class="ruleset-name">Core Ads</span>
+        <span class="ruleset-status"></span>
+      </li>
+      <li data-ruleset="privacy_trackers">
+        <span class="ruleset-dot"></span>
+        <span class="ruleset-name">Privacy Trackers</span>
+        <span class="ruleset-status"></span>
+      </li>
+      <li data-ruleset="annoyances">
+        <span class="ruleset-dot"></span>
+        <span class="ruleset-name">Annoyances</span>
+        <span class="ruleset-status"></span>
+      </li>
+    </ul>
+    <div class="ruleset-source" id="ruleset-source">Source: —</div>
+  </section>
+
+  <section class="status-card" id="rollback-card" hidden>
+    <span class="status-icon">!</span>
+    <span id="rollback-text">Rollback active</span>
+  </section>
+
+  <section class="trust-card">
+    <h2>Update Trust State</h2>
+    <div class="trust-label">Signed updates: local validation scaffold</div>
+    <table class="trust-table">
+      <tr>
+        <td class="trust-key">Ruleset version</td>
+        <td class="trust-val" id="trust-version">—</td>
+      </tr>
+      <tr>
+        <td class="trust-key">Source</td>
+        <td class="trust-val" id="trust-source">—</td>
+      </tr>
+      <tr>
+        <td class="trust-key">Last success</td>
+        <td class="trust-val" id="trust-last-success">—</td>
+      </tr>
+      <tr>
+        <td class="trust-key">Last failure</td>
+        <td class="trust-val" id="trust-last-failure">—</td>
+      </tr>
+      <tr>
+        <td class="trust-key">Consecutive failures</td>
+        <td class="trust-val" id="trust-failures">0</td>
+      </tr>
+      <tr>
+        <td class="trust-key">Rollback</td>
+        <td class="trust-val" id="trust-rollback">Inactive</td>
+      </tr>
+      <tr>
+        <td class="trust-key">Last-known-good</td>
+        <td class="trust-val" id="trust-lkg">—</td>
+      </tr>
+    </table>
+  </section>
+
+  <section class="allowlist-card">
+    <h2>Manual Allowlist</h2>
+    <div class="allowlist-input-row">
+      <input type="text" id="allowlist-input" placeholder="example.com" autocomplete="off" spellcheck="false">
+      <button id="allowlist-add-btn">Allow</button>
+    </div>
+    <div id="allowlist-error" class="allowlist-error" hidden></div>
+    <ul id="allowlist-entries" class="allowlist-entries"></ul>
+    <p class="allowlist-helper">Allow blocking exceptions on manually entered sites. CleanBlock does not read your current tab.</p>
+  </section>
+
+  <footer>
+    <span class="footer-badge">Local-only stats</span>
+    <span class="footer-badge">No telemetry</span>
+  </footer>
+
+  <script src="popup.js"></script>
+</body>
+</html>
