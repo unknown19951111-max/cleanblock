@@ -118,6 +118,10 @@ See [docs/LOCAL_SMOKE_TEST.md](docs/LOCAL_SMOKE_TEST.md) for a step-by-step chec
 - Production signing key: **intentionally placeholder** — real Ed25519 keypair to be generated offline before any signed update is published
 - Chrome Web Store submission: **not yet** — requires real signing key, icon assets, and store listing
 
+## License
+
+MIT
+
 ## File Structure
 
 ```
