@@ -11,7 +11,7 @@
   <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, sans-serif">
 
     <text x="28" y="24" font-size="16" font-weight="800" fill="#1f2328">CleanBlock</text>
-    <text x="28" y="40" font-size="11" fill="#6e7781">v0.1.0 proof-of-concept · 25 DNR rules · no telemetry</text>
+    <text x="28" y="40" font-size="11" fill="#6e7781">v0.1.0 proof-of-concept · 65 DNR rules · no telemetry</text>
 
     <rect x="28" y="62" width="644" height="196" rx="10" fill="none" stroke="#d0d7de" stroke-width="1.5" stroke-dasharray="5 4"/>
     <rect x="48" y="54" width="128" height="16" rx="2" fill="#ffffff"/>
@@ -26,13 +26,13 @@
     <text x="285" y="120" text-anchor="middle" font-size="9" font-weight="800" letter-spacing="1" fill="#0969da">DECLARATIVENETREQUEST</text>
     <line x1="204" y1="130" x2="366" y2="130" stroke="#d8dee4" stroke-width="0.75"/>
     <text x="210" y="152" font-size="12" fill="#1f2328">Core Ads</text>
-    <text x="370" y="152" text-anchor="end" font-size="11" font-weight="700" font-family="ui-monospace, SFMono-Regular, monospace" fill="#6e7781">10</text>
+    <text x="370" y="152" text-anchor="end" font-size="11" font-weight="700" font-family="ui-monospace, SFMono-Regular, monospace" fill="#6e7781">38</text>
     <text x="210" y="173" font-size="12" fill="#1f2328">Privacy Trackers</text>
-    <text x="370" y="173" text-anchor="end" font-size="11" font-weight="700" font-family="ui-monospace, SFMono-Regular, monospace" fill="#6e7781">10</text>
+    <text x="370" y="173" text-anchor="end" font-size="11" font-weight="700" font-family="ui-monospace, SFMono-Regular, monospace" fill="#6e7781">22</text>
     <text x="210" y="194" font-size="12" fill="#1f2328">Annoyances</text>
     <text x="370" y="194" text-anchor="end" font-size="11" font-weight="700" font-family="ui-monospace, SFMono-Regular, monospace" fill="#6e7781">5</text>
     <line x1="204" y1="204" x2="366" y2="204" stroke="#d8dee4" stroke-width="0.75"/>
-    <text x="285" y="222" text-anchor="middle" font-size="10" font-weight="600" fill="#6e7781">25 rules</text>
+    <text x="285" y="222" text-anchor="middle" font-size="10" font-weight="600" fill="#6e7781">65 rules</text>
 
     <line x1="382" y1="164" x2="462" y2="164" stroke="#6e7781" stroke-width="1.5" marker-end="url(#a)"/>
 

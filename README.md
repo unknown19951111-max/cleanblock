@@ -7,7 +7,7 @@ Privacy-preserving content blocker for Chrome, built on Manifest V3.
 ![chrome](https://img.shields.io/badge/chrome-111%2B-yellow?style=flat-square)
 ![manifest](https://img.shields.io/badge/manifest-v3-blueviolet?style=flat-square)
 
-> **Proof-of-concept.** 25 static rules across 3 rulesets. A working prototype demonstrating a verifiable trust model — not a production ad blocker.
+> **Proof-of-concept.** 65 static rules across 3 rulesets. A working prototype demonstrating a verifiable trust model — not a production ad blocker.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/architecture-dark.svg">
@@ -55,7 +55,7 @@ Trust documentation lives in [`trust/`](trust/) — covers telemetry, allowlist,
 > [!IMPORTANT]
 > This is a v0.1.0 proof-of-concept with significant limitations.
 
-- **25 rules total** across 3 rulesets. Production blockers ship 300k+. Most ads will not be blocked.
+- **65 rules total** across 3 rulesets (38 ad networks, 22 trackers, 5 annoyances). Production blockers ship 300k+. Coverage is limited.
 - **No cosmetic filtering.** Planned for v0.2 via `chrome.scripting.insertCSS()`.
 - **Update pipeline is scaffold-only.** Not connected to a live endpoint.
 - **No dynamic rule management UI.** The allowlist is manual.

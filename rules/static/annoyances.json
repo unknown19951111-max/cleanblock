@@ -5,7 +5,7 @@
     "action": { "type": "block" },
     "condition": {
       "urlFilter": "||cookiebot.com^",
-      "resourceTypes": ["script"]
+      "resourceTypes": ["script", "xmlhttprequest", "other"]
     }
   },
   {
@@ -14,7 +14,7 @@
     "action": { "type": "block" },
     "condition": {
       "urlFilter": "||cookielaw.org^",
-      "resourceTypes": ["script"]
+      "resourceTypes": ["script", "xmlhttprequest", "other"]
     }
   },
   {
@@ -23,7 +23,7 @@
     "action": { "type": "block" },
     "condition": {
       "urlFilter": "||consent.cookiebot.com^",
-      "resourceTypes": ["script", "xmlhttprequest"]
+      "resourceTypes": ["script", "xmlhttprequest", "other"]
     }
   },
   {
@@ -32,7 +32,7 @@
     "action": { "type": "block" },
     "condition": {
       "urlFilter": "||trustarc.com^",
-      "resourceTypes": ["script"]
+      "resourceTypes": ["script", "xmlhttprequest", "other"]
     }
   },
   {
@@ -41,7 +41,7 @@
     "action": { "type": "block" },
     "condition": {
       "urlFilter": "||onetrust.com^",
-      "resourceTypes": ["script"]
+      "resourceTypes": ["script", "xmlhttprequest", "other"]
     }
   }
 ]

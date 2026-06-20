@@ -30,7 +30,8 @@ chrome.runtime.onStartup.addListener(async () => {
 
 chrome.alarms.onAlarm.addListener((alarm) => {
   if (alarm.name === ALARM_UPDATE_CHECK) {
-    // Signed update check will be implemented in Steps 7-9.
+    // Scaffold: signed update check not yet connected to a live endpoint.
+    // When implemented, this will fetch and validate signed rule updates.
   }
 });
 
